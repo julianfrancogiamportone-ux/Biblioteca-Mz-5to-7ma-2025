@@ -23,20 +23,20 @@ public class Libro {
     private Date fechaPublicacion;
     //@OneToMany(mappedBy = "books")
     //private Editorial editorial;
-    private String description;
+    private String descripcion;
     //@ManyToMany(mappedBy="books")
     //private Set<Materia> materias;
-    private Integer pages;
+    private Integer paginas;
 
-    //public Libro(Set<Autor> autores, String description, Editorial editorial, Date fechaPublicacion, Set<Materia> materias, String nombre, Integer pages) {
+    //public Libro(Set<Autor> autores, String descripcion, Editorial editorial, Date fechaPublicacion, Set<Materia> materias, String nombre, Integer paginas) {
     public Libro(String description, Date fechaPublicacion, String nombre, Integer pages) {
         //this.autores = autores;
-        this.description = description;
+        this.descripcion = description;
         //this.editorial = editorial;
         this.fechaPublicacion = fechaPublicacion;
         //this.materias = materias;
         this.nombre = nombre;
-        this.pages = pages;
+        this.paginas = pages;
     }
 
     public long getId() {
@@ -76,11 +76,11 @@ public class Libro {
     //}
 
     public String getDescription() {
-        return description;
+        return descripcion;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.descripcion = description;
     }
 
     //public Set<Materia> getMaterias() {
@@ -92,11 +92,11 @@ public class Libro {
     //}
 
     public Integer getPages() {
-        return pages;
+        return paginas;
     }
 
     public void setPages(Integer pages) {
-        this.pages = pages;
+        this.paginas = pages;
     }
 
 }
