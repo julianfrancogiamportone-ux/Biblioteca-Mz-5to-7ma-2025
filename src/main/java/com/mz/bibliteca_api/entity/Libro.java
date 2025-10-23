@@ -24,14 +24,16 @@ public class Libro {
     //@OneToMany(mappedBy = "books")
     //private Editorial editorial;
     private String descripcion;
+    private String urlImagen;
     //@ManyToMany(mappedBy="books")
     //private Set<Materia> materias;
     private Integer paginas;
 
     //public Libro(Set<Autor> autores, String descripcion, Editorial editorial, Date fechaPublicacion, Set<Materia> materias, String nombre, Integer paginas) {
-    public Libro(String description, Date fechaPublicacion, String nombre, Integer pages) {
+    public Libro(String description, String urlImagen, Date fechaPublicacion, String nombre, Integer pages) {
         //this.autores = autores;
         this.descripcion = description;
+        this.urlImagen = urlImagen;
         //this.editorial = editorial;
         this.fechaPublicacion = fechaPublicacion;
         //this.materias = materias;
@@ -97,6 +99,14 @@ public class Libro {
 
     public void setPages(Integer pages) {
         this.paginas = pages;
+    }
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
 
 }
