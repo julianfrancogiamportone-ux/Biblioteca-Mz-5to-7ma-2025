@@ -1,13 +1,13 @@
-package com.mz.bibliteca_api;
+package com.mz.biblioteca_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BiblitecaApiApplication {
+public class BibliotecaApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BiblitecaApiApplication.class, args);
+		SpringApplication.run(BibliotecaApiApplication.class, args);
 	}
 
 }

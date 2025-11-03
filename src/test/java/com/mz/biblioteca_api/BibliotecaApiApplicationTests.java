@@ -1,10 +1,10 @@
-package com.mz.bibliteca_api;
+package com.mz.biblioteca_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BiblitecaApiApplicationTests {
+class BibliotecaApiApplicationTests {
 
 	@Test
 	void contextLoads() {
