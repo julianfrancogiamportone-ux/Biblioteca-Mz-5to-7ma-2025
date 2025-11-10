@@ -1,3 +1,9 @@
+package com.mz.bibliteca_api.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.mz.bibliteca_api.entity.Profesor;
 
 @Repository
-interface ProfesorRepository extends JpaRepository<Profesor, Long> {}
+public interface ProfesorRepository extends JpaRepository<Profesor, Long> {}
