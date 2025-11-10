@@ -1,11 +1,11 @@
-package com.mz.biblioteca_api.service;
+package com.mz.bibliteca_api.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.mz.biblioteca_api.entity.Materia;
-import com.mz.biblioteca_api.IService.IMateriaService;
-import com.mz.biblioteca_api.repository.MateriaRepository;
+import com.mz.bibliteca_api.entity.Materia;
+import com.mz.bibliteca_api.iservice.IMateriaService;
+import com.mz.bibliteca_api.repository.MateriaRepository;
 
 @Service
 public class MateriaService implements IMateriaService {

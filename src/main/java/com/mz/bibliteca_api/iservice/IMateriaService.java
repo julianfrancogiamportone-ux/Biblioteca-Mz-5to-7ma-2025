@@ -1,7 +1,7 @@
-package com.mz.biblioteca_api.IService;
+package com.mz.bibliteca_api.iservice;
 
 import java.util.List;
-import com.mz.biblioteca_api.entity.Materia;
+import com.mz.bibliteca_api.entity.Materia;
 
 public interface IMateriaService {
     List<Materia> findAll();

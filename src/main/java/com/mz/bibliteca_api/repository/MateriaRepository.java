@@ -1,7 +1,7 @@
-package com.mz.biblioteca_api.repository;
+package com.mz.bibliteca_api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.mz.biblioteca_api.entity.Materia;
+import com.mz.bibliteca_api.entity.Materia;
 
 public interface MateriaRepository extends JpaRepository<Materia, Integer> {
     
