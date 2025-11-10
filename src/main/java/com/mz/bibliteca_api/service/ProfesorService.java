@@ -1,3 +1,12 @@
+package com.mz.bibliteca_api.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import com.mz.bibliteca_api.repository.ProfesorRepository;
+
+import com.mz.bibliteca_api.entity.Profesor;
+
 @Service
 class ProfesorService {
 

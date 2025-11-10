@@ -1,3 +1,12 @@
+package com.mz.bibliteca_api.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mz.bibliteca_api.entity.Autor;
+import com.mz.bibliteca_api.repository.AutorRepository;;
+
 @Service
 class AutorService {
 
