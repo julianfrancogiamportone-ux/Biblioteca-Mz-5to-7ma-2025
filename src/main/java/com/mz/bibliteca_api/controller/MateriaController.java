@@ -1,10 +1,10 @@
-package com.mz.biblioteca_api.controller;
+package com.mz.bibliteca_api.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.mz.biblioteca_api.entity.Materia;
-import com.mz.biblioteca_api.IService.IMateriaService;
+import com.mz.bibliteca_api.entity.Materia;
+import com.mz.bibliteca_api.iservice.IMateriaService;
 
 @RestController
 @RequestMapping("/materias")
