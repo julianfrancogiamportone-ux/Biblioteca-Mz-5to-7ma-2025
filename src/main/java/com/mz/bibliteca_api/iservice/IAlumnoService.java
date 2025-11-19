@@ -3,13 +3,13 @@ package com.mz.bibliteca_api.iservice;
 import java.util.List;
 import java.util.Optional;
 
-import com.mz.bibliteca_api.entity.Alumnos;
+import com.mz.bibliteca_api.entity.Alumno;
 
 public interface IAlumnoService {
-    public List<Alumnos> findAllAuthors();
-    public Alumnos saveAlumnos(Alumnos Alumnos);
-	public Optional<Alumnos> findAlumnosById(Long id);
+    public List<Alumno> findAllAlumnos();
+    public Alumno saveAlumnos(Alumno Alumnos);
+	public Optional<Alumno> findAlumnosById(Long id);
 	public void deleteAlumnos(Long id);
-	public void deleteAlumnos (Alumnos Alumnos);
+	public void deleteAlumnos (Alumno Alumnos);
 	public void deleteAllAlumnos();
 }

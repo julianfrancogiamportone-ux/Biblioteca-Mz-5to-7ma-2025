@@ -1,3 +1,11 @@
+package com.mz.bibliteca_api.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "alumnos")
 public class Alumno {
@@ -12,7 +20,7 @@ public class Alumno {
     private Long libroId;
 
     public Long getId() { return id; }
-   public String getNombre() { return nombre; }
+    public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
