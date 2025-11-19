@@ -6,9 +6,9 @@ import java.util.Optional;
 import com.mz.bibliteca_api.entity.Autor;
 
 public interface IAutorService {
-    public List<autores> findAllAuthors();
+    public List<Autor> findAllAuthors();
     public Autor saveAuthor(Autor autor);
-	public Optional<autores> findAuthorById(Long id);
+	public Optional<Autor> findAuthorById(Long id);
 	public void deleteAuthor(Long id);
 	public void deleteAuthor(Autor autor);
 	public void deleteAllAuthors();

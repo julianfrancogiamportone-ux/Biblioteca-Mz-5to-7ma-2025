@@ -7,9 +7,9 @@ import com.mz.bibliteca_api.entity.Profesor;
 
 public interface IProfesorService {
     public List<Profesor> findAllprofesor();
-    public Profesor saveProfesor(profesor Profesor);
+    public Profesor saveProfesor(Profesor Profesor);
 	public Optional<Profesor> findprofesorById(Long id);
 	public void deleteProfesor(Long id);
-	public void deleteProfesor(profesor Profesor);
+	public void deleteProfesor(Profesor Profesor);
 	public void deleteAllprofesor();
 }
