@@ -7,7 +7,7 @@ import com.mz.bibliteca_api.entity.Editorial;
 import com.mz.bibliteca_api.iservice.IEditorialService;
 
 @RestController
-@RequestMapping("/editoriales")
+@RequestMapping("/api/editoriales")
 public class EditorialController {
 
     @Autowired

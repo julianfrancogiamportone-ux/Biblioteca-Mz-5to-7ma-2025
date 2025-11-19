@@ -7,7 +7,7 @@ import com.mz.bibliteca_api.entity.Materia;
 import com.mz.bibliteca_api.iservice.IMateriaService;
 
 @RestController
-@RequestMapping("/materias")
+@RequestMapping("/api/materias")
 public class MateriaController {
 
     @Autowired

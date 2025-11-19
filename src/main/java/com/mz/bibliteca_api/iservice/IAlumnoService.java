@@ -7,9 +7,9 @@ import com.mz.bibliteca_api.entity.Alumno;
 
 public interface IAlumnoService {
     public List<Alumno> findAllAlumnos();
-    public Alumno saveAlumnos(Alumno Alumnos);
+    public Alumno saveAlumnos(Alumno alumno);
 	public Optional<Alumno> findAlumnosById(Long id);
 	public void deleteAlumnos(Long id);
-	public void deleteAlumnos (Alumno Alumnos);
+	public void deleteAlumnos (Alumno alumno);
 	public void deleteAllAlumnos();
 }

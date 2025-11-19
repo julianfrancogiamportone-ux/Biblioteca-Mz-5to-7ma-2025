@@ -9,7 +9,7 @@ public interface IAutorService {
     public List<Autor> findAllAuthors();
     public Autor saveAuthor(Autor autor);
 	public Optional<Autor> findAuthorById(Long id);
-	public void deleteAuthor(Long id);
+	public void deleteAuthorById(Long id);
 	public void deleteAuthor(Autor autor);
 	public void deleteAllAuthors();
 }

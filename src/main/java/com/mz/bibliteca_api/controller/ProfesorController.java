@@ -3,6 +3,7 @@ package com.mz.bibliteca_api.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +16,14 @@ import com.mz.bibliteca_api.entity.Profesor;
 import com.mz.bibliteca_api.iservice.IProfesorService;
 
 @RestController
-@RequestMapping("/profesores")
+@RequestMapping("/api/profesores")
 class ProfesorController {
+    @Autowired
+    private IProfesorService aiService;
 
-    private final IProfesorService aiService;
-
-    public ProfesorController(IProfesorService aiService) {
-        this.aiService = aiService;
-    }
+    //public ProfesorController(IProfesorService aiService) {
+    //    this.aiService = aiService;
+    //}
 
     @GetMapping
     public List<Profesor> listar() { return aiService.findAllprofesor(); }

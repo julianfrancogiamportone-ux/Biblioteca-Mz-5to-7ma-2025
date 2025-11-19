@@ -3,6 +3,7 @@ package com.mz.bibliteca_api.entity;
 import java.time.Year;
 //import java.util.Set;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,6 +16,7 @@ import jakarta.persistence.Id;
     las entidades Libro, Profesor y Alumno, una vez implementadas es necesario descomentar el mismo.
 */
 
+@Entity
 public class Curso {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

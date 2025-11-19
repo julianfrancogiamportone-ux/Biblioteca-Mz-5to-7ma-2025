@@ -1,22 +1,51 @@
 package com.mz.bibliteca_api.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mz.bibliteca_api.entity.Alumno;
+import com.mz.bibliteca_api.iservice.IAlumnoService;
 import com.mz.bibliteca_api.repository.AlumnoRepository;
 
 @Service
-class AlumnoService {
+class AlumnoService implements IAlumnoService{
+    @Autowired
+    private AlumnoRepository repository;
 
-    private final AlumnoRepository repository;
+    //public AlumnoService(AlumnoRepository repository) {
+    //    this.repository = repository;
+    //}
 
-    public AlumnoService(AlumnoRepository repository) {
-        this.repository = repository;
-    }
+    @Override
+    public List<Alumno> findAllAlumnos() {
+        return repository.findAll();
+    };
 
-    public List<Alumno> listar() { return repository.findAll(); }
-    public Alumno obtener(Long id) { return repository.findById(id).orElse(null); }
-    public Alumno guardar(Alumno alumno) { return repository.save(alumno);}
+    @Override
+    public Alumno saveAlumnos(Alumno alumno) {
+        return repository.save(alumno);
+    };
+
+    @Override
+	public Optional<Alumno> findAlumnosById(Long id) {
+        return repository.findById(id);
+    };
+	
+    @Override
+    public void deleteAlumnos(Long id) {
+        repository.deleteById(id);
+    };
+	
+    @Override
+    public void deleteAlumnos (Alumno alumno) {
+        repository.delete(alumno);
+    };
+	
+    @Override
+    public void deleteAllAlumnos() {
+        repository.deleteAll();
+    };
 }
