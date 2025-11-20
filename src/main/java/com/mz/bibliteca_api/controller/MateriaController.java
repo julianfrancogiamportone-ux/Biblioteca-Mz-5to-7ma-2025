@@ -28,12 +28,6 @@ public class MateriaController {
         return materiaService.save(materia);
     }
 
-    @PutMapping("/{id}")
-    public Materia actualizarMateria(@PathVariable Integer id, @RequestBody Materia materia) {
-        materia.setId(id);
-        return materiaService.save(materia);
-    }
-
     @DeleteMapping("/{id}")
     public void eliminarMateria(@PathVariable Integer id) {
         materiaService.deleteById(id);

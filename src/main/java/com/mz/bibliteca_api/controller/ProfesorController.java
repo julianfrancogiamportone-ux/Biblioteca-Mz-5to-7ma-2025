@@ -21,10 +21,6 @@ class ProfesorController {
     @Autowired
     private IProfesorService aiService;
 
-    //public ProfesorController(IProfesorService aiService) {
-    //    this.aiService = aiService;
-    //}
-
     @GetMapping
     public List<Profesor> listar() { return aiService.findAllprofesor(); }
 

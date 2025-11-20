@@ -20,6 +20,7 @@ import com.mz.bibliteca_api.iservice.ICursoService;
 @RequestMapping("/api/cursos")
 @CrossOrigin(origins = "*")
 public class CursoController {
+	
 	@Autowired
 	private ICursoService cService;
 	

@@ -1,44 +1,63 @@
 package com.mz.bibliteca_api.entity;
 
 import java.util.Date;
-//import java.util.Set;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.ManyToMany;
-//import jakarta.persistence.OneToMany;
-
-// TODO: Descomentar una vez se hayan implementado las entidades Autor, Editorial y Materia.
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "libros")
 public class Libro {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String nombre;
-    //@ManyToMany(mappedBy="books")
-    //private Set<Autor> autores;
+
+    @ManyToMany()
+    @JsonIgnoreProperties(value = "libros")
+    /* TODO: En vez de ignorar toda la propiedad libros, solo ignorar al libro dentro del autor,
+        evitando recursion y preservando informacion*/
+    private Set<Autor> autores;
+
     private Date fechaPublicacion;
-    //@OneToMany(mappedBy = "books")
-    //private Editorial editorial;
+
+    @ManyToOne()
+    @JoinColumn(name = "editorial_id")
+    @JsonIgnoreProperties(value = "libros")
+    private Editorial editorial;
+
     private String descripcion;
     private String urlImagen;
-    //@ManyToMany(mappedBy="books")
-    //private Set<Materia> materias;
+
+    @ManyToMany()
+    @JsonIgnoreProperties(value = "libros")
+    /* TODO: En vez de ignorar toda la propiedad libros, solo ignorar al libro dentro de la materia,
+        evitando recursion y preservando informacion*/
+    private Set<Materia> materias;
+
     private Integer paginas;
 
-    //public Libro(Set<Autor> autores, String descripcion, Editorial editorial, Date fechaPublicacion, Set<Materia> materias, String nombre, Integer paginas) {
-    public Libro(String description, String urlImagen, Date fechaPublicacion, String nombre, Integer pages) {
-        //this.autores = autores;
-        this.descripcion = description;
-        this.urlImagen = urlImagen;
-        //this.editorial = editorial;
-        this.fechaPublicacion = fechaPublicacion;
-        //this.materias = materias;
+    public Libro() {}
+    
+    public Libro(String nombre, Set<Autor> autores, Date fechaPublicacion, Editorial editorial, String descripcion,
+            String urlImagen, Set<Materia> materias, Integer paginas) {
         this.nombre = nombre;
-        this.paginas = pages;
+        this.autores = autores;
+        this.fechaPublicacion = fechaPublicacion;
+        this.editorial = editorial;
+        this.descripcion = descripcion;
+        this.urlImagen = urlImagen;
+        this.materias = materias;
+        this.paginas = paginas;
     }
 
     public long getId() {
@@ -53,13 +72,13 @@ public class Libro {
         this.nombre = nombre;
     }
 
-    //public Set<Autor> getAutores() {
-    //    return autores;
-    //}
+    public Set<Autor> getAutores() {
+        return autores;
+    }
 
-    //public void setAutores(Set<Autor> autores) {
-    //    this.autores = autores;
-    //}
+    public void setAutores(Set<Autor> autores) {
+        this.autores = autores;
+    }
 
     public Date getFechaPublicacion() {
         return fechaPublicacion;
@@ -69,36 +88,20 @@ public class Libro {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    //public Editorial getEditorial() {
-    //    return editorial;
-    //}
+    public Editorial getEditorial() {
+        return editorial;
+    }
 
-    //public void setEditorial(Editorial editorial) {
-    //    this.editorial = editorial;
-    //}
+    public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+    }
 
-    public String getDescription() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescription(String description) {
-        this.descripcion = description;
-    }
-
-    //public Set<Materia> getMaterias() {
-    //    return materias;
-    //}
-
-    //public void setMaterias(Set<Materia> materias) {
-    //    this.materias = materias;
-    //}
-
-    public Integer getPages() {
-        return paginas;
-    }
-
-    public void setPages(Integer pages) {
-        this.paginas = pages;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getUrlImagen() {
@@ -109,4 +112,22 @@ public class Libro {
         this.urlImagen = urlImagen;
     }
 
+    public Set<Materia> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(Set<Materia> materias) {
+        this.materias = materias;
+    }
+
+    public Integer getPaginas() {
+        return paginas;
+    }
+
+    public void setPaginas(Integer paginas) {
+        this.paginas = paginas;
+    }
+
+    
+    
 }
