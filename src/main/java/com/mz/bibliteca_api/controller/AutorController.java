@@ -17,12 +17,9 @@ import com.mz.bibliteca_api.iservice.IAutorService;
 @RestController
 @RequestMapping("/api/autores")
 class AutorController {
+    
     @Autowired
     private IAutorService aService;
-
-    //public AutorController(IAutorService aiService) {
-    //    this.aService = aiService;
-    //}
 
     @GetMapping
     public List<Autor> listar() { return aService.findAllAuthors(); }

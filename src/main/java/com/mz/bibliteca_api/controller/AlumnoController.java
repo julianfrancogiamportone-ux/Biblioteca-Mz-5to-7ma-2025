@@ -18,12 +18,9 @@ import com.mz.bibliteca_api.iservice.IAlumnoService;
 @RestController
 @RequestMapping("/api/alumnos")
 class AlumnoController {
+    
     @Autowired
     private IAlumnoService aiService;
-
-    //public AlumnoController(IAlumnoService aiService) {
-    //    this.aiService = aiService;
-    //}
 
     @GetMapping
     public List<Alumno> listar() { return aiService.findAllAlumnos(); }

@@ -20,6 +20,7 @@ import com.mz.bibliteca_api.iservice.ILibroService;
 @RequestMapping("/api/libros")
 @CrossOrigin(origins = "*")
 public class LibroController {
+	
 	@Autowired
 	private ILibroService pService;
 	
