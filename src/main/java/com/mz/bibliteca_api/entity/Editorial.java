@@ -7,8 +7,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "editoriales")
 public class Editorial {
 
     @Id
@@ -16,11 +18,11 @@ public class Editorial {
     private int id;
     private String nombre;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "editorial")
     private Set<Libro> libros;
 
     public Editorial() {}
-    
+
     public Editorial(String nombre, Set<Libro> libros) {
         this.nombre = nombre;
         this.libros = libros;
@@ -45,5 +47,5 @@ public class Editorial {
     public void setLibros(Set<Libro> libros) {
         this.libros = libros;
     }
-    
+
 }

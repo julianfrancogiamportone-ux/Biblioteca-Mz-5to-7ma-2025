@@ -22,7 +22,7 @@ public class Autor {
     private LocalDate fechaNacimiento;
     private String nacionalidad;
     
-    @ManyToMany()
+    @ManyToMany(mappedBy = "autores")
     private Set<Libro> libros;
 
     public Autor() {}
@@ -79,4 +79,5 @@ public class Autor {
         this.libros = libros;
     }
 
+    
 }

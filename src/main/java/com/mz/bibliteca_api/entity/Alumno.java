@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -22,6 +23,7 @@ public class Alumno {
     private String dni;
     
     @ManyToOne()
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @ManyToMany()
@@ -81,4 +83,5 @@ public class Alumno {
         this.libros = libros;
     }
 
+    
 }

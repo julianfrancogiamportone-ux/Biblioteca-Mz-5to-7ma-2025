@@ -3,34 +3,39 @@ package com.mz.bibliteca_api.entity;
 import java.time.Year;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "cursos")
 public class Curso {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private Year cicloLectivo;
     private int division;
-    @ManyToMany()
-    private Set<Libro> librosReservados;
-    @ManyToMany()
+    @ManyToMany(mappedBy = "cursos")
+    @JsonIgnoreProperties(value = "cursos")
     private Set<Profesor> profesores;
-    @OneToMany()
+
+    @OneToMany(mappedBy = "curso")
+    @JsonIgnoreProperties(value = "curso")
+    /* TODO: En vez de ignorar toda la propiedad curso, solo ignorar al alumno dentro del curso,
+        evitando recursion y preservando informacion*/
     private Set<Alumno> alumnos;
 
     public Curso() {}
 
-    public Curso(Year cicloLectivo, int division, Set<Libro> librosReservados, Set<Profesor> profesores,
-            Set<Alumno> alumnos) {
+    public Curso(Year cicloLectivo, int division, Set<Profesor> profesores, Set<Alumno> alumnos) {
         this.cicloLectivo = cicloLectivo;
         this.division = division;
-        this.librosReservados = librosReservados;
         this.profesores = profesores;
         this.alumnos = alumnos;
     }
@@ -55,14 +60,6 @@ public class Curso {
         this.division = division;
     }
 
-    public Set<Libro> getLibrosReservados() {
-        return librosReservados;
-    }
-
-    public void setLibrosReservados(Set<Libro> librosReservados) {
-        this.librosReservados = librosReservados;
-    }
-
     public Set<Profesor> getProfesores() {
         return profesores;
     }
@@ -79,4 +76,6 @@ public class Curso {
         this.alumnos = alumnos;
     }
 
+    
+    
 }

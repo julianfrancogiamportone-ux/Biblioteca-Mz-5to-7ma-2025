@@ -3,14 +3,19 @@ package com.mz.bibliteca_api.entity;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "libros")
 public class Libro {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,19 +23,31 @@ public class Libro {
     private String nombre;
 
     @ManyToMany()
+    @JsonIgnoreProperties(value = "libros")
+    /* TODO: En vez de ignorar toda la propiedad libros, solo ignorar al libro dentro del autor,
+        evitando recursion y preservando informacion*/
     private Set<Autor> autores;
 
     private Date fechaPublicacion;
+
     @ManyToOne()
+    @JoinColumn(name = "editorial_id")
+    @JsonIgnoreProperties(value = "libros")
     private Editorial editorial;
+
     private String descripcion;
     private String urlImagen;
+
     @ManyToMany()
+    @JsonIgnoreProperties(value = "libros")
+    /* TODO: En vez de ignorar toda la propiedad libros, solo ignorar al libro dentro de la materia,
+        evitando recursion y preservando informacion*/
     private Set<Materia> materias;
+
     private Integer paginas;
 
     public Libro() {}
-
+    
     public Libro(String nombre, Set<Autor> autores, Date fechaPublicacion, Editorial editorial, String descripcion,
             String urlImagen, Set<Materia> materias, Integer paginas) {
         this.nombre = nombre;
@@ -111,5 +128,6 @@ public class Libro {
         this.paginas = paginas;
     }
 
+    
     
 }
