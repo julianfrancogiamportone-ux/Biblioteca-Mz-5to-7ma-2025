@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mz.bibliteca_api.entity.Profesor;
+import com.mz.bibliteca_api.entity.Usuario;
 import com.mz.bibliteca_api.iservice.IProfesorService;
+import com.mz.bibliteca_api.iservice.IUsuarioService;
 
 @RestController
 @RequestMapping("/api/profesores")
@@ -31,6 +35,20 @@ class ProfesorController {
             return resultado.get();
         } else {
             return new Profesor();
+        }
+    }
+
+    @Autowired
+    private IUsuarioService uService;
+
+    @GetMapping("/me")
+    public Profesor getSelf() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Usuario usuario = uService.findUsuarioByUsername(user.getUsername());
+        if (usuario != null) {
+            return usuario.getAsProfesor();
+        } else {
+            return null;
         }
     }
 

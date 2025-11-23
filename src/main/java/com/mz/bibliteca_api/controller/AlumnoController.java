@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mz.bibliteca_api.entity.Alumno;
+import com.mz.bibliteca_api.entity.Usuario;
 import com.mz.bibliteca_api.iservice.IAlumnoService;
+import com.mz.bibliteca_api.iservice.IUsuarioService;
 
 @RestController
 @RequestMapping("/api/alumnos")
@@ -21,6 +26,9 @@ class AlumnoController {
     
     @Autowired
     private IAlumnoService aiService;
+
+    @Autowired
+    private IUsuarioService uService;
 
     @GetMapping
     public List<Alumno> listar() { return aiService.findAllAlumnos(); }
@@ -33,6 +41,17 @@ class AlumnoController {
             return resultado.get();
         } else {
             return new Alumno();
+        }
+    }
+
+    @GetMapping("/me")
+    public Alumno getSelf() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Usuario usuario = uService.findUsuarioByUsername(user.getUsername());
+        if (usuario != null) {
+            return usuario.getAsAlumno();
+        } else {
+            return null;
         }
     }
 

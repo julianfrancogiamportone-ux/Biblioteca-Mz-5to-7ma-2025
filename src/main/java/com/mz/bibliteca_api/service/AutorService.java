@@ -14,10 +14,7 @@ import com.mz.bibliteca_api.repository.AutorRepository;;
 class AutorService implements IAutorService{
     @Autowired
     private AutorRepository repository;
-
-    //public AutorService(AutorRepository repository) {
-    //    this.repository = repository;
-    //}
+    
     @Override
     public List<Autor> findAllAuthors() { return repository.findAll(); }
     @Override

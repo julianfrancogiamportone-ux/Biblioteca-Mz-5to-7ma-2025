@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mz.bibliteca_api.entity.Curso;
+import com.mz.bibliteca_api.entity.Usuario;
 import com.mz.bibliteca_api.iservice.ICursoService;
+import com.mz.bibliteca_api.iservice.IUsuarioService;
 
 @RestController
 @RequestMapping("/api/cursos")
@@ -33,6 +37,21 @@ public class CursoController {
 	public Optional<Curso> getCursoById(@PathVariable Long id) {
 		return cService.findCursoById(id);
 	}
+
+	@Autowired
+    private IUsuarioService uService;
+
+	@GetMapping("/me")
+	public Curso getSelf() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Usuario usuario = uService.findUsuarioByUsername(user.getUsername());
+        if (usuario != null) {
+            return usuario.getAsAlumno().getCurso();
+        } else {
+            return null;
+        }
+	}
+	
 	
 	@PostMapping
 	public Curso createCurso(@RequestBody Curso curso) {

@@ -15,10 +15,6 @@ class AlumnoService implements IAlumnoService{
     @Autowired
     private AlumnoRepository repository;
 
-    //public AlumnoService(AlumnoRepository repository) {
-    //    this.repository = repository;
-    //}
-
     @Override
     public List<Alumno> findAllAlumnos() {
         return repository.findAll();
