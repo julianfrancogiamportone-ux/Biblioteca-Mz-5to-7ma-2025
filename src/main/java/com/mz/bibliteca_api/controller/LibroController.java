@@ -22,35 +22,35 @@ import com.mz.bibliteca_api.iservice.ILibroService;
 public class LibroController {
 	
 	@Autowired
-	private ILibroService pService;
+	private ILibroService lService;
 	
 	@GetMapping
 	public List<Libro> getAllLibros() {
-		return pService.findAllBooks();
+		return lService.findAllBooks();
 	}
 	
 	@GetMapping("/{id}")
 	public Optional<Libro> getLibroById(@PathVariable Long id) {
-		return pService.findBookById(id);
+		return lService.findBookById(id);
 	}
 	
 	@PostMapping
 	public Libro createLibro(@RequestBody Libro libro) {
-		return pService.saveBook(libro);
+		return lService.saveBook(libro);
 	}
 	
 	@DeleteMapping("/{id}/delete")
 	public void deleteLibro(@PathVariable Long id) {
-		pService.deleteBook(id);
+		lService.deleteBook(id);
 	}
 	
 	@DeleteMapping("/delete")
 	public void deleteLibro(@RequestBody Libro libro) {
-		pService.deleteBook(libro);
+		lService.deleteBook(libro);
 	}
 	
 	@DeleteMapping("/delete/all")
 	public void deleteAllLibros() {
-		pService.deleteAllBooks();
+		lService.deleteAllBooks();
 	}
 }

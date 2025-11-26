@@ -8,28 +8,29 @@ import com.mz.bibliteca_api.iservice.IMateriaService;
 
 @RestController
 @RequestMapping("/api/materias")
+@CrossOrigin(origins = "*")
 public class MateriaController {
 
     @Autowired
-    private IMateriaService materiaService;
+    private IMateriaService mService;
 
     @GetMapping
     public List<Materia> listarMaterias() {
-        return materiaService.findAll();
+        return mService.findAll();
     }
 
     @GetMapping("/{id}")
     public Materia obtenerPorId(@PathVariable Integer id) {
-        return materiaService.findById(id);
+        return mService.findById(id);
     }
 
     @PostMapping
     public Materia crearMateria(@RequestBody Materia materia) {
-        return materiaService.save(materia);
+        return mService.save(materia);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarMateria(@PathVariable Integer id) {
-        materiaService.deleteById(id);
+        mService.deleteById(id);
     }
 }

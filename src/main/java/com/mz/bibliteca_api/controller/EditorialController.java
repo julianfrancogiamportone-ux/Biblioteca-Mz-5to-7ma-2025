@@ -8,29 +8,30 @@ import com.mz.bibliteca_api.iservice.IEditorialService;
 
 @RestController
 @RequestMapping("/api/editoriales")
+@CrossOrigin(origins = "*")
 public class EditorialController {
 
     @Autowired
-    private IEditorialService editorialService;
+    private IEditorialService eService;
 
     @GetMapping
     public List<Editorial> listarEditoriales() {
-        return editorialService.findAll();
+        return eService.findAll();
     }
      
     @GetMapping("/{id}")
     public Editorial obtenerPorId(@PathVariable Integer id) {
-        return editorialService.findById(id).orElse(null);
+        return eService.findById(id).orElse(null);
     }
 
 
     @PostMapping
     public Editorial crearEditorial(@RequestBody Editorial editorial) {
-        return editorialService.save(editorial);
+        return eService.save(editorial);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarEditorial(@PathVariable Integer id) {
-        editorialService.deleteById(id);
+        eService.deleteById(id);
     }
 }

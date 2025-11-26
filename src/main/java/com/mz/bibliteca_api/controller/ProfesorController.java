@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,16 +22,17 @@ import com.mz.bibliteca_api.iservice.IUsuarioService;
 
 @RestController
 @RequestMapping("/api/profesores")
+@CrossOrigin(origins = {"http://127.0.0.1", "https://127.0.0.1/", "http://localhost/", "https://localhost", "http://127.0.0.1:3000", "https://127.0.0.1:3000/", "http://localhost:3000/", "https://localhost:3000/"})
 class ProfesorController {
     @Autowired
-    private IProfesorService aiService;
+    private IProfesorService pService;
 
     @GetMapping
-    public List<Profesor> listar() { return aiService.findAllprofesor(); }
+    public List<Profesor> listar() { return pService.findAllprofesor(); }
 
     @GetMapping("/{id}")
     public Profesor obtener(@PathVariable Long id) {
-        final Optional<Profesor> resultado = aiService.findprofesorById(id);
+        final Optional<Profesor> resultado = pService.findprofesorById(id);
         if (resultado.isPresent()) {
             return resultado.get();
         } else {
@@ -53,7 +55,7 @@ class ProfesorController {
     }
 
     @PostMapping
-    public Profesor crear(@RequestBody Profesor profesor) { return aiService.saveProfesor(profesor); }
+    public Profesor crear(@RequestBody Profesor profesor) { return pService.saveProfesor(profesor); }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {}

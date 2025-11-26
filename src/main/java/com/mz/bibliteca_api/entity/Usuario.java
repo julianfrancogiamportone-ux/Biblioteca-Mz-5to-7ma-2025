@@ -38,6 +38,10 @@ public class Usuario {
         return id;
     }
 
+    public void resetId() {
+        this.id = null;
+    }
+
     public String getUsername() {
         return username;
     }
