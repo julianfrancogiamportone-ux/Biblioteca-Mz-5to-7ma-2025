@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,20 +23,21 @@ import com.mz.bibliteca_api.iservice.IUsuarioService;
 
 @RestController
 @RequestMapping("/api/alumnos")
+@CrossOrigin(origins = {"http://127.0.0.1", "https://127.0.0.1/", "http://localhost/", "https://localhost", "http://127.0.0.1:3000", "https://127.0.0.1:3000/", "http://localhost:3000/", "https://localhost:3000/"})
 class AlumnoController {
     
     @Autowired
-    private IAlumnoService aiService;
+    private IAlumnoService aService;
 
     @Autowired
     private IUsuarioService uService;
 
     @GetMapping
-    public List<Alumno> listar() { return aiService.findAllAlumnos(); }
+    public List<Alumno> listar() { return aService.findAllAlumnos(); }
 
     @GetMapping("/{id}")
     public Alumno obtener(@PathVariable Long id) {
-        final Optional<Alumno> resultado = aiService.findAlumnosById(id);
+        final Optional<Alumno> resultado = aService.findAlumnosById(id);
         
         if (resultado.isPresent()) {
             return resultado.get();
@@ -56,10 +58,10 @@ class AlumnoController {
     }
 
     @PostMapping
-    public Alumno crear(@RequestBody Alumno alumno) { return aiService.saveAlumnos(alumno); }
+    public Alumno crear(@RequestBody Alumno alumno) { return aService.saveAlumnos(alumno); }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
-        aiService.deleteAlumnos(id);
+        aService.deleteAlumnos(id);
     }
   }

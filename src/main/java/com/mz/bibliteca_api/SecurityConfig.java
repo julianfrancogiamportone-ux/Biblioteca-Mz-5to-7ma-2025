@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -22,18 +23,19 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.mz.bibliteca_api.entity.Usuario;
 import com.mz.bibliteca_api.iservice.IUsuarioService;
 
-import org.springframework.security.config.Customizer;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+            .csrf(Customizer.withDefaults())
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests((requests) -> requests
                     .requestMatchers("/api/usuarios").hasRole("ADMIN")
                     .requestMatchers("/api/usuarios/me").authenticated()
+                    .requestMatchers("/api/usuarios/register").permitAll()
+                    .requestMatchers("/api/usuarios/csrf").permitAll()
                     .requestMatchers("/api/alumnos").hasRole("ADMIN")
                     .requestMatchers("/api/alumnos/me").authenticated()
                     .requestMatchers("/api/profesores").hasRole("ADMIN")
@@ -47,11 +49,15 @@ public class SecurityConfig {
                     .defaultSuccessUrl("/index")
                     .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> {
+                    logout.logoutUrl("/logout");
+                    logout.logoutSuccessUrl("/login?logout");
+                    logout.permitAll();
+                });
 
 		return http.build();
 	}
-    
+
     @Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -60,7 +66,7 @@ public class SecurityConfig {
 	@Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1", "https://127.0.0.1/", "http://localhost/", "https://localhost", "http://127.0.0.1:3000", "https://127.0.0.1:3000/", "http://localhost:3000/", "https://localhost:3000/"));
+        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1", "https://127.0.0.1/", "http://localhost/", "https://localhost", "http://127.0.0.1:3000", "https://127.0.0.1:3000/", "http://localhost:3000/", "https://localhost:3000/", "http://localhost:8080/", "https://localhost:8080/"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
 		configuration.setAllowCredentials(true);
@@ -87,7 +93,7 @@ public class SecurityConfig {
             
             manager.createUser(userDetails);
         }
-        System.out.println(manager.loadUserByUsername("Test"));
+
         return manager;
     }
 }
